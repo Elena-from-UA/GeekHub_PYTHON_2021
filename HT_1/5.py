@@ -8,5 +8,6 @@ hexList = []
 
 for i in decimalNumList:
     hexNum = hex(i)
+    hexNum = hexNum[2:]
     hexList.append(hexNum)
 print(hexList)
