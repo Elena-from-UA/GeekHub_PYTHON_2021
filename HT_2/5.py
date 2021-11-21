@@ -7,8 +7,6 @@ values = []
 newDict = {}
 
 for k,v in userDict.items():
-    '''if type(v) == list:
-            v = tuple(v)'''
     if v not in values:
         newDict.update({k: v})
         values.append(v)
