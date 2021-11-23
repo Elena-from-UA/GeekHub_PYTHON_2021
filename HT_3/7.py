@@ -10,8 +10,11 @@ def calc(arg_1, operation, arg_2):
     elif operation == '*':
         print(arg_1 * arg_2)
     elif operation == '/':
-        print(arg_1 / arg_2)
+        if arg_2 == 0:
+            print('You can not divide by zero')
+        else:
+            print(arg_1 / arg_2)
     else:
         print('incorrect values')
 
-calc(10, '+' ,10)
+calc(10, '/' ,0)
