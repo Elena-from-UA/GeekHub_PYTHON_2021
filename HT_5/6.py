@@ -11,5 +11,3 @@ def func_range(start,stop):
 for i in func_range(1,9):
     print(i)
     
-#check next(n)    
-n = func_range(1,9)
