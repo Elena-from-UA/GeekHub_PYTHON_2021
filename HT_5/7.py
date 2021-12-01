@@ -17,13 +17,9 @@
   
 
 def generator(value):
-    iterator = iter(value)
     while True:
-        try:
-            i = next(iterator)
-        except:
-            for i in value:
-                print(i)
+        for i in value:
+            yield(i)
 
 for elem in generator('qwerty'):
     print(elem)
