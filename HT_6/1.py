@@ -3,6 +3,12 @@ import time
 lights_for_car = [[5,'Red'],[2,'Yellow'],[5,'Green'],[2,'Yellow']]
 lights_for_people = [[7,'Green'],[7,'Red']]
 
+def decorator(func):
+    def wrapper():
+        print('"For car" - "For people"')
+        func()
+    return wrapper
+
 def traffic_lights_car():
     active_color = []
     for color in lights_for_car:
@@ -20,7 +26,7 @@ def traffic_lights_people():
             color[0] -= 1
     return active_color
             
-       
+@decorator       
 def traffic_lights():
     func_result_car = traffic_lights_car()
     func_result_people = traffic_lights_people()
