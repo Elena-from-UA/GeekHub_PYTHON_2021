@@ -1,0 +1,9 @@
+{'Check the balance': '8875'}
+{'Input sum': 25}
+{'Check the balance': '8900'}
+{'Input sum': 100}
+{'Check the balance': '9000'}
+{'Check the balance': '8000'}
+{'Output sum': 'Transaction is not successful'}
+{'Check the balance': '8000'}
+{'Input sum': 1254}
