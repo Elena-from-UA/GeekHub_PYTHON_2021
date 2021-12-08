@@ -83,7 +83,7 @@ def start():
                     if i.isalpha():
                         summ = input('Enter right sum, without symbols: ')
                         break
-                summ = int(summ)
+                summ = abs(int(summ))
                 top_up_balance = top_up_user_balance_file(user_name[0],summ)
                 print('Money in your card =)')
                 with open(f'{user_name[0]}_transactions.txt','a') as f:
@@ -96,7 +96,7 @@ def start():
                     if i.isalpha():
                         summ = input('Enter right sum, without symbols: ')
                         break
-                summ = int(summ)
+                summ = abs(int(summ))
                 take_money = take_user_balance_file(user_name[0],summ)
                 with open(f'{user_name[0]}_transactions.txt','a') as f:
                     if take_money is None:
