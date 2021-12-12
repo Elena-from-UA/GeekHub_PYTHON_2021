@@ -1,3 +1,4 @@
+'''Код переписано повністю + додано інкасацію (вся біда написана у Windows)'''
 import csv
 
 def csv_users(user_name,password):
