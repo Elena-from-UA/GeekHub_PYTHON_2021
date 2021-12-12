@@ -1,0 +1,31 @@
+Type of transaction;Output information
+Check the balance;0
+Top the balance;5555
+Check the balance;0
+Check the balance;0
+Top the balance;9999
+Check the balance;0
+Check the balance;0
+Check the balance;
+Check the balance;
+Check the balance;
+Check the balance;
+Check the balance;0
+Check the balance;1000
+Top up the balance;1000
+Check the balance;2000
+Top up the balance;500
+Check the balance;2500
+Top up the balance;500
+Withdrawal of money;Transaction is not successful - 10000
+Check the balance;3000
+Withdrawal of money;1000
+Withdrawal of money;160
+Withdrawal of money;200
+Withdrawal of money;160
+Check the balance;1480
+Withdrawal of money;160
+Withdrawal of money;160
+Withdrawal of money;160
+Withdrawal of money;160
+Withdrawal of money;160
