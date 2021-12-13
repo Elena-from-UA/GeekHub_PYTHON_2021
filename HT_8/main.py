@@ -119,31 +119,35 @@ def output_denominations(summ):
     for i in list_result:
         i = list(i)
         new_list.append(i)
+    new_list.reverse()
     list_result.clear()
-    for value in new_list:
-        if (int(value[0]) * int(value[1])) == 0:
+    for i in new_list:
+        if int(i[1]) == 0:
             continue
-        list_result.append(value)
-    list_result.reverse()
-    a = []
-    for i in list_result:
         if summ < int(i[0]):
             continue
         result = summ // int(i[0])
-        if result < int(i[1]):
-            summ = summ - (result * int(i[0]))
-            k = int(i[1]) - result
-            i.insert(1,k)
-            i.pop()
-        else:
-            summ = summ - (int(i[1]) * int(i[0]))
-            list_result.remove(i)
-        while result > 0:
-            a.append(i[0])
-            result -= 1
-    return a
+        if result >= int(i[1]):
+            result = int(i[1])
             
-           
+        while result > 0:
+            if summ - (result * int(i[0])) > int(i[0]):
+                summ = summ - int(i[0])
+                list_result.append(i[0])        
+            else:
+                summ = summ - (result * int(i[0]))
+                z = 0
+                while z < result:
+                    list_result.append(i[0])
+                    z += 1
+                break
+            result -= 1
+
+    if summ != 0:
+        return False
+    else:
+        return list_result
+                  
 def start():
     user_name = input('Enter login: ')
     password = input('Enter password: ')
@@ -173,16 +177,19 @@ def start():
                 summ = input('How much do you want to take money? ')
                 result = check_correct_summ(summ)
                 type_transact = 'Withdrawal of money'
-                if change_balance(user_name,-result) == True:
-                    denom = output_denominations(result)
-                    print(denom)
-                    denom = {i:-(denom.count(i)) for i in denom}
-                    change_count_denominations(denom)
-                    print(f'Put your money - {result}')
-                    csv_transactions(user_name,type_transact,result)
+                denom = output_denominations(result)
+                if denom == False:
+                    print('ATM can`t give you this sum')
                 else:
-                    result = f'Transaction is not successful - {result}'
-                    csv_transactions(user_name,type_transact,result)
+                    if change_balance(user_name,-result) == True:
+                        print(denom)
+                        denom = {i:-(denom.count(i)) for i in denom}
+                        change_count_denominations(denom)
+                        print(f'Put your money - {result}')
+                        csv_transactions(user_name,type_transact,result)
+                    else:
+                        result = f'Transaction is not successful - {result}'
+                        csv_transactions(user_name,type_transact,result)
             elif user_option == '4':
                 print('Exit')
                 i = False
