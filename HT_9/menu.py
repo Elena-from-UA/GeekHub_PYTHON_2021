@@ -4,24 +4,29 @@ import features as ft
 def menu_collector(con):
     # меню для інкасатора
     cur = con.cursor()
-    print(' 1 - Check the balance ATM\n 2 - Change the balance ATM')
-    user_option = input('Select an option: ')
-    if user_option == '1':
-        print(ft.check_denominations(con))
-    elif user_option == '2':
-        denom_list = [10, 20, 50, 100, 200, 500, 1000]
-        input_denom = input(f'Enter denomination {denom_list} : ')
-        input_denom = ft.check_correct_summ(input_denom)
-        if input_denom in denom_list:
-            count_denom = input('Enter count for this denomination: ')
-            count_denom = ft.check_correct_summ(count_denom)
-            denom_dict = {input_denom: count_denom}
-            ft.change_count_denominations(denom_dict,con)
-            print('Successful')
+    i = True
+    while i:
+        print(' 1 - Check the balance ATM\n 2 - Change the balance ATM\n 3 - Exit')
+        user_option = input('Select an option: ')
+        if user_option == '1':
+            print(ft.check_denominations(con))
+        elif user_option == '2':
+            denom_list = [10, 20, 50, 100, 200, 500, 1000]
+            input_denom = input(f'Enter denomination {denom_list} : ')
+            input_denom = ft.check_correct_summ(input_denom)
+            if input_denom in denom_list:
+                count_denom = input('Enter count for this denomination: ')
+                count_denom = ft.check_correct_summ(count_denom)
+                denom_dict = {input_denom: count_denom}
+                ft.change_count_denominations(denom_dict,con)
+                print('Successful')
+            else:
+                print('Incorrect denomination')
+        elif user_option == '3':
+            print('Exit')
+            i = False
         else:
-            print('Incorrect denomination')
-    else:
-        print('Incorrect option')
+            print('Incorrect option')
 
 
 def start(con):
