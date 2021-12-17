@@ -1,4 +1,5 @@
 import sqlite3
+import itertools
 
 def register_user(user_name,password,is_admin,con):
     # реєстрація нового користувача
@@ -95,35 +96,46 @@ def output_denominations(summ,con):
     cur.execute('SELECT * FROM denominations')
     rows = cur.fetchall()
     list_result = rows
-    new_list = []
+    
     for i in list_result:
         i = list(i)
         new_list.append(i)
     new_list.reverse()
     list_result.clear()
+    new_list = dict(new_list)
+    b = {}
+
     for i in new_list:
-        if int(i[1]) == 0:
+        if new_list.get(i) == 0:
             continue
-        if summ < int(i[0]):
+        if summ < i:
             continue
-        result = summ // int(i[0])
-        if result >= int(i[1]):
-            result = int(i[1])
-
-        while result > 0:
-            if summ - (result * int(i[0])) > int(i[0]):
-                summ = summ - int(i[0])
-                list_result.append(i[0])
-            else:
-                summ = summ - (result * int(i[0]))
-                z = 0
-                while z < result:
-                    list_result.append(i[0])
-                    z += 1
-                break
-            result -= 1
-
-    if summ != 0:
+        result = summ // i
+        if result == 0:
+            continue
+        if result > new_list.get(i):
+            result = new_list.get(i)
+        b.update({i:result})
+    d = b.copy()
+    l = []
+    for i in b:
+        z = b.get(i)
+        while z > 0:
+            l.append(i)
+            z -= 1
+            
+    for L in range(0, len(l)+1):
+        for subset in itertools.combinations(l, L):
+            if sum(subset) == summ:
+                if subset not in list_result:
+                    list_result.append(subset)
+    if len(list_result) == 0:
         return False
-    else:
-        return list_result
+    new_dict = {}                
+    for i in list_result:
+        new_dict.update({len(i):i})
+
+    best_result = min(new_dict.keys())
+
+    return new_dict.get(best_result)
+
