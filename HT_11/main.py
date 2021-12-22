@@ -70,7 +70,8 @@ def users_json(user_id):
     data = res.json()
     for i in data:
         if i.get('id') == user_id:
-            print(i)
+            for key in i:
+                print(f'{key}: {i.get(key)}')
 
 def posts_json(user_id):
     url = 'https://jsonplaceholder.typicode.com/posts'
@@ -87,7 +88,8 @@ def posts_full_json(post_id):
     data = res.json()
     for i in data:
         if i.get('id') == post_id:
-            print(i)
+            for key in i:
+                print(f'{key}: {i.get(key)}')
             
     url = 'https://jsonplaceholder.typicode.com/comments'
     res = requests.get(url)
