@@ -11,7 +11,8 @@ def main():
         print("Ошибка при подключении к sqlite", error)
 
     cur.execute('''CREATE TABLE IF NOT EXISTS quotes
-                   (text_quotes TEXT NOT NULL PRIMARY KEY)''')
+                   (text_quotes TEXT NOT NULL PRIMARY KEY,
+                   name_author TEXT NOT NULL)''')
 
     cur.execute('''CREATE TABLE IF NOT EXISTS authors
                    (name TEXT NOT NULL PRIMARY KEY)''')
@@ -26,7 +27,7 @@ def main():
     with open('quotes.csv','rt',encoding='utf-16') as f:
         reader = csv.reader(f)
         for row in reader:
-            cur.execute("INSERT INTO quotes(text_quotes) VALUES (?)", row)
+            cur.execute("INSERT or IGNORE INTO quotes(text_quotes,name_author) VALUES (?,?)", row)
             
     with open('authors.csv','rt',encoding='utf-16') as f:
         reader = csv.reader(f)
@@ -39,5 +40,3 @@ def main():
             cur.execute("INSERT or IGNORE INTO about_authors(name,date_born,born_place,description) VALUES (?,?,?,?)", row)
             
     con.commit()
-
-
