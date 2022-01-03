@@ -4,25 +4,18 @@
    - Створіть 2 екземпляри класу Person та в кожному з екземплярів створіть атребут profession.'''
 
 class Person(object):
-    """Class for information about Person"""
     
     def __init__(self,**kwargs):
         self.age = kwargs.get('age')
         self.name = kwargs.get('name')
 
     def show_age(self):
-        """Class method for show age person"""
-        
         return self.age
 
     def print_name(self):
-        """Class method for print name person"""
-        
         return self.name
 
     def show_all_information(self):
-        """Class method for show all information about person"""
-        
         return vars(self)
         
 
