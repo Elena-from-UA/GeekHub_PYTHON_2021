@@ -1,40 +1,38 @@
-''' Task 4
-4. Видозмініть програму так,щоб метод __init__ мався в класі «геометричні фігури»
-та приймав кольор фігури при створенні екземпляру,
-а методи __init__ підкласів доповнювали його та додавали початкові розміри.'''
+''' Task 3
+3. Напишіть програму, де клас «геометричні фігури» (figure)
+містить властивість color з початковим значенням white і
+метод для зміни кольору фігури, а його підкласи «овал» (oval)
+і «квадрат» (square) містять методи __init__ для завдання початкових
+розмірів об'єктів при їх створенні.'''
 
 class Figure(object):
+    color = 'white'
 
-    def __init__(self,color='white'):
-        self.color = color
-        
-    def change_color(self):
+    def change_color(self,color):
         self.color = color
 
 class Oval(Figure):
 
-    def __init__(self,color,small_radius,big_radius):
-        Figure.__init__(self,color)
+    def __init__(self,small_radius,big_radius):
         self.small_radius = small_radius
         self.big_radius = big_radius
-        
 
 class Square(Figure):
 
-    def __init__(self,color,side):
-        Figure.__init__(self,color)
+    def __init__(self,side):
         self.side = side
-        
-
         
 figure_1 = Figure()
 print(figure_1.color)
 figure_1.color = 'red'
 print(figure_1.color)
+figure_1.change_color('yellow')
+print(figure_1.color)
 
-figure_2 = Oval('blue',5,10)
-print(figure_2.small_radius,figure_2.big_radius,figure_2.color)
+figure_2 = Oval(5,10)
+print(figure_2.small_radius,figure_2.big_radius)
 
-figure_3 = Square('black',7)
-print(figure_3.side,figure_3.color)
-
+figure_3 = Square(7)
+figure_3.color = 'black'
+print(figure_3.side)
+print(figure_3.color)
