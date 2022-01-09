@@ -8,7 +8,7 @@
 class Figure(object):
     color = 'white'
 
-    def change_color(self):
+    def change_color(self,color):
         self.color = color
 
 class Oval(Figure):
@@ -25,6 +25,8 @@ class Square(Figure):
 figure_1 = Figure()
 print(figure_1.color)
 figure_1.color = 'red'
+print(figure_1.color)
+figure_1.change_color('yellow')
 print(figure_1.color)
 
 figure_2 = Oval(5,10)
